@@ -404,3 +404,188 @@ void checkOverLap(node * root, interval temp_inter) {
 
   }
 }
+
+// minumum node u döndürür
+node * minValue( node * node){
+   if(node == NULL)
+        return NULL;
+
+    else if(node->left != NULL) // solda çocuk varsa çocuğun minumumunu çağır
+        return minValue(node->left); // sol dalın en küçüğü
+    return node;
+}
+
+
+node * deleteIntervalINT( node* root, int key){
+    if (root == NULL)
+        return root;
+ 
+    // eğer aranan değer kökten küçükse sola kayar.
+    if (key < *(int*)root->i->low)
+        root->left = deleteInterval(root->left, key);
+ 
+
+    //eğer aranan değer kökten büyükse sağa kayar.
+    else if (key > *(int*)root->i->low)
+        root->right = deleteInterval(root->right, key);
+ 
+   // aranan node bukulnmuşsa silme işlemi
+    else {
+        // node un çocukları yoksa 
+        if (root->left==NULL && root->right==NULL){
+
+            return NULL;
+        }
+       
+        // tek çocuğu varsa.
+        else if (root->left == NULL) {
+             node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL) {
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+ 
+        // iki çocuklu  bir dal ise 
+        node* temp = minValue(root->right);
+ 
+        // kaydırma işlemi 
+        root->i->low = temp->i->low;
+        root->right = deleteInterval(root->right, *(int*)temp->i->low);
+    }
+    return root;
+}
+
+
+node * deleteIntervalFLOAT( node* root, float key){
+    if (root == NULL)
+        return root;
+ 
+    // eğer aranan değer kökten küçükse sola kayar.
+    if (key < *(float *)root->i->low)
+        root->left = deleteInterval(root->left, key);
+ 
+
+    //eğer aranan değer kökten büyükse sağa kayar.
+    else if (key > *(float *)root->i->low)
+        root->right = deleteInterval(root->right, key);
+ 
+   // aranan node bukulnmuşsa silme işlemi
+    else {
+        // node un çocukları yoksa 
+        if (root->left==NULL && root->right==NULL){
+
+            return NULL;
+        }
+       
+        // tek çocuğu varsa.
+        else if (root->left == NULL) {
+             node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL) {
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+ 
+        // iki çocuklu  bir dal ise 
+        node* temp = minValue(root->right);
+ 
+        // kaydırma işlemi 
+        root->i->low = temp->i->low;
+        root->right = deleteInterval(root->right, *(float *)temp->i->low);
+    }
+    return root;
+}
+
+node * deleteIntervalCHAR( node* root, char key){
+    if (root == NULL)
+        return root;
+ 
+    // eğer aranan değer kökten küçükse sola kayar.
+    if (key < *(char *)root->i->low)
+        root->left = deleteInterval(root->left, key);
+ 
+
+    //eğer aranan değer kökten büyükse sağa kayar.
+    else if (key > *(char *)root->i->low)
+        root->right = deleteInterval(root->right, key);
+ 
+   // aranan node bukulnmuşsa silme işlemi
+    else {
+        // node un çocukları yoksa 
+        if (root->left==NULL && root->right==NULL){
+
+            return NULL;
+        }
+       
+        // tek çocuğu varsa.
+        else if (root->left == NULL) {
+             node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL) {
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+ 
+        // iki çocuklu  bir dal ise 
+        node* temp = minValue(root->right);
+ 
+        // kaydırma işlemi 
+        root->i->low = temp->i->low;
+        root->right = deleteInterval(root->right, *(char *)temp->i->low);
+    }
+    return root;
+}
+
+node * deleteIntervalDOUBLE( node* root, double key){
+    if (root == NULL)
+        return root;
+ 
+    // eğer aranan değer kökten küçükse sola kayar.
+    if (key < *(double *)root->i->low)
+        root->left = deleteInterval(root->left, key);
+ 
+
+    //eğer aranan değer kökten büyükse sağa kayar.
+    else if (key > *(double *)root->i->low)
+        root->right = deleteInterval(root->right, key);
+ 
+   // aranan node bukulnmuşsa silme işlemi
+    else {
+        // node un çocukları yoksa 
+        if (root->left==NULL && root->right==NULL){
+
+            return NULL;
+        }
+       
+        // tek çocuğu varsa.
+        else if (root->left == NULL) {
+             node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL) {
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+ 
+        // iki çocuklu  bir dal ise 
+        node* temp = minValue(root->right);
+ 
+        // kaydırma işlemi 
+        root->i->low = temp->i->low;
+        root->right = deleteInterval(root->right, *(double *)temp->i->low);
+    }
+    return root;
+}
+

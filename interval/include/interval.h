@@ -21,6 +21,13 @@
   double: createIntervalDOUBLE, \
   default: errorMessage)(X, Y)
 
+#define deleteInterval(X, Y) _Generic((Y),\
+  int: deleteIntervalINT,\
+  float: deleteIntervalFLOAT,\
+  char: deleteIntervalCHAR,\
+  double:deleteIntervalDOUBLE,\
+  default:errorMessage)(X, Y)
+
 //intervalin tuttuğu void* pointerın gösterdiği veri tipini ifade eder 
 enum intervalTypes {
   intInterval,
@@ -73,5 +80,15 @@ int errorMessage();
 void printInterval(interval i);
 // overlap search yaptıktan sonra yazdırma işlemini yapan fonksiyon. overlapSearchten gelen interval ile işlem uygulanmayacaksa bu fonksiyon tercih edilmelidir.
 void checkOverLap(node * root, interval i);
+//araçtaki minimum değeri bulur.
+node * minValue( node* node);
+// int silme fonksiyonu
+node * deleteIntervalINT( node* root, int key);
+// float silme fonksiyonu
+node * deleteIntervalFLOAT( node* root, float key);
+//char silme fonksiyonu
+node * deleteIntervalCHAR( node* root, char key);
+//double silme fonksiyonu
+node * deleteIntervalDOUBLE( node* root, double key);
 
 #endif /* interval_h */

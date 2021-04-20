@@ -30,14 +30,21 @@ int main(void) {
   inorder(root);
   printf(" 5.node eklendikten sonra ağaç[30,40]\n");
   root = insert(root, createInterval(30, 40));
-
   inorder(root); //in order sırası ile yazdır.
+
 
   interval temp_inter = createInterval(6, 7);
 
   printf("overlap aranıyor:");
   printInterval(temp_inter);
   checkOverLap(root, temp_inter);
+
+  printf("silme işlemi (low'u 15 olan node silinecek):\n");
+  deleteInterval(root,15);
+  inorder(root);
+  printf("silme işlemi (low'u 30 olan node silinecek):\n");
+  deleteInterval(root,30);
+  inorder(root);
 
   printf("-------------\n");
   //double test bölümü
@@ -90,10 +97,16 @@ int main(void) {
 
   interval temp_inter3 = createInterval(b, d);
 
+
   printf("overlap aranıyor:");
   printInterval(temp_inter3);
   checkOverLap(root3, temp_inter3);
 
+  printf(" silme işlemi :  low u s harfi olan node \n");
+
+  deleteInterval(root3,s);
+  
+  inorder(root3);
   
 
 }
